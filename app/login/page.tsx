@@ -11,25 +11,27 @@ export default function Login() {
   const [password, setPassword] = useState("")
   const router = useRouter()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    })
-    if (result?.ok) {
-      router.push("/blog")
+  const handleLogin = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const res = await signIn("credentials", {
+        email: "polbesalu@gmail.com",
+        password: "polbesalu",
+        redirect: false,  // Prevent auto-redirect for debugging
+    });
+
+    if (res?.error) {
+        console.error("Login failed:", res.error);
     } else {
-      // Handle error
-      console.error("Login failed")
+        console.log("Login successful!", res);
+        window.location.href = "/blog"; // Redirect after successful login
     }
-  }
+  };
 
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold mb-8 text-center">Login</h1>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <form onSubmit={handleLogin} className="max-w-md mx-auto">
         <div className="mb-4">
           <label htmlFor="email" className="block mb-2">
             Email
@@ -76,9 +78,10 @@ export default function Login() {
         >
           Login with Google
         </button>
-        <button
-          onClick={() => signIn("apple")}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded"
+        <button disabled
+          //onClick={() => signIn("apple")}
+          className="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded"
+          
         >
           Login with Apple
         </button>
