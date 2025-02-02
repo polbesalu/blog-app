@@ -3,10 +3,9 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import fileUpload from 'express-fileupload';
-import authRoutes from './routes/auth.js';
+import authRoutes from './routes/auth.js'; 
 import postRoutes from './routes/posts.js';
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -17,16 +16,14 @@ app.use(cors());
 app.use(fileUpload());
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('MongoDB Connected'))
+mongoose.connect("mongodb+srv://polbesalu:ZLDD5aYPMnRCg0H0@blogappcluster.pkqbd.mongodb.net/?retryWrites=true&w=majority&appName=BlogAppCluster")
+  .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
 // Use Routes
-app.use('/auth', authRoutes);
-app.use('/posts', postRoutes);
+app.use('/auth', authRoutes); // Using auth routes
+app.use('/posts', postRoutes); // Using post routes
 
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
