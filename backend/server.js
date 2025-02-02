@@ -21,8 +21,10 @@ mongoose.connect("mongodb+srv://polbesalu:ZLDD5aYPMnRCg0H0@blogappcluster.pkqbd.
   .catch(err => console.log(err));
 
 // Use Routes
-app.use('/auth', authRoutes); // Using auth routes
+app.use('/routes/auth', authRoutes); // Using auth routes
 app.use('/posts', postRoutes); // Using post routes
+app.use("/api/auth", authRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 5001;
