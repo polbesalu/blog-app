@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira-code" })
 
 export const metadata = {
+  other: { "google-site-verification": "YOUR_VERIFICATION_CODE" },
   title: "Tech Blog",
   description: "A blog about coding, technology, and more",
 }
