@@ -8,6 +8,7 @@ import { MongoClient } from "mongodb";
 const client = new MongoClient("mongodb+srv://polbesalu:ZLDD5aYPMnRCg0H0@blogappcluster.pkqbd.mongodb.net/?retryWrites=true&w=majority&appName=BlogAppCluster");
 
 const handler = NextAuth({
+  secret: "yvneSuNxg+/2dxSDH0FbLSPg/RL0cyJrx8cN5YpPhiU=",
   providers: [
     GoogleProvider({
       clientId: "1006215771331-od9nsjmabts9u49h65o9blf0irb534jo.apps.googleusercontent.com" ?? "",
